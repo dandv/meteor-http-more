@@ -8,7 +8,8 @@ Ever got an SSL error when doing an `HTTP.get()` call in Meteor, like [`UNABLE_T
 That's because you need to pass [a certain TLS option](http://stackoverflow.com/questions/17200391/nodejs-unable-to-verify-leaf-signature) along with the request. No big deal, right, since Meteor's HTTP package uses [mikeal's request](https://github.com/mikeal/request) Npm module?
 Wrong. The problem is you can't just pass extra options to `request`, because [Meteor is opinionated and wants to](https://github.com/meteor/meteor/issues/1703)
 > provide a consistent interface between client and server, so adding lots of server-only options doesn't seem look a good idea
-...despite the fact that the server and client are essentially different, e.g. the client doesn't support redirects, or requires CORS etc. Read more on the debate at [Meteor issue #1703](https://github.com/meteor/meteor/issues/1703).
+
+...despite the fact that the server and client are essentially different, e.g. the client doesn't support redirects, or can run into CORS restrictions etc. Read more on the debate at [Meteor issue #1703](https://github.com/meteor/meteor/issues/1703).
 
 This is where `http-more` comes in. It lets you pass through to the underlying HTTP backend any options you want.
 Currently, the backend is mikeal's `request` module, so you can pass, for example, `{rejectUnauthorized: false}` to avoid that `LEAF_SIGNATURE` error.
