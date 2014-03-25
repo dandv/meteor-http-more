@@ -1,0 +1,10 @@
+{
+  "name": "http-more",
+  "description": "Meteor's HTTP package enhanced to pass through extra options to the backend (mikeal's request)",
+  "homepage": "https://github.com/dandv/meteor-http-more",
+  "author": "Dan Dascalescu <dNOSPAMdascalescu@gmail.com> (http://dandascalescu.com)",
+  "version": "0.7.2-1",
+  "git": "https://github.com/dandv/meteor-http-more.git",
+  "packages": {
+  }
+}

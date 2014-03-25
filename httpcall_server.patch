@@ -1,0 +1,15 @@
+75c75,76
+<   var req_options = {
+---
+>   delete options.auth;  // auth, if any, was moved into the headers
+>   var req_options = _.extend(options, {
+80d80
+<     timeout: options.timeout,
+82d81
+<     followRedirect: options.followRedirects,
+84c83,85
+<   };
+---
+>   });
+>   req_options.followRedirect = options.followRedirects;  // meteor calls it followRedirect*s*
+> 
