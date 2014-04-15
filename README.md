@@ -1,6 +1,14 @@
 # Meteor's HTTP package + extra options
 
-This is a patched version of Meteor's [standard HTTP package](http://docs.meteor.com/#http), enhanced to pass through extra options to the backend ([mikeal's request](https://github.com/mikeal/request) as of Meteor 0.7.2).
+This is a minimally patched version of Meteor's [standard HTTP package](http://docs.meteor.com/#http), enhanced to pass through extra options to the backend ([@mikeal's request](https://github.com/mikeal/request) as of Meteor 0.8.0).
+
+## Features
+
+* [proxy support](http://stackoverflow.com/a/22069540/1269037)
+* [cookies](https://groups.google.com/forum/#!topic/meteor-core/HdJK0n-09DA) to avoid getting stuck in redirect loops
+* [pass TLS/SSL options](http://stackoverflow.com/q/20681044/1269037)
+* customize `maxRedirects`
+* ... and all the other [`request` options](https://github.com/mikeal/request#requestoptions-callback)
 
 ## Why
 
@@ -11,21 +19,31 @@ Wrong. The problem is you can't just pass extra options to `request`, because [M
 
 ...despite the fact that the server and client are essentially different, e.g. the client doesn't support redirects, or can run into CORS restrictions etc. Read more on the debate at [Meteor issue #1703](https://github.com/meteor/meteor/issues/1703).
 
-This is where `http-more` comes in. It lets you pass through to the underlying HTTP backend any options you want.
-Currently, the backend is mikeal's `request` module, so you can pass, for example, `{rejectUnauthorized: false}` to avoid that `LEAF_SIGNATURE` error.
+This is where `http-more` comes in. It lets you pass through to the underlying HTTP backend (or frontend) any options you want.
+Currently, the backend is mikeal's `request` module, so you can pass, for example, `{rejectUnauthorized: false}` to avoid that `LEAF_SIGNATURE` error, or {jar: true} to enable a session cookie jar.
 
-## How to install 
+
+## Installing
+
 1. `npm install -g meteorite` (if not already installed)
 2. `meteor remove http`
 3. `mrt add http-more`
 
-## Tests
 
-`https_tests.js` includes a test against a site that as of March 2014, generates that `UNABLE_TO_VERIFY_LEAF_SIGNATURE` error.
+## Contributing and tests
+
+After cloning this repo, run `./build.sh` to check out the latest Meteor and apply the patch. To run the tests, rename the cloned repo directory to `http-more`, and run in it `meteor test-packages .`.
+
+`http-more_tests.js` includes:
+
+* a test against a site that as of March 2014, generates that `UNABLE_TO_VERIFY_LEAF_SIGNATURE` error.
+* a test against an NYTimes RSS feed that needs a cookie jar to redirect properly - [`request` issue #865](https://github.com/mikeal/request/issues/865)
+
 More tests, against other `request` options, are very welcome.
+
 
 ## How it works
 
-The repo includes `meteor/meteor` as a submodule, then patches only 6 lines in `httpcall_server.js`. There's another one-line patch in `httpcall_tests.js` due to repackaging the files. That's it.
+The repo includes [`meteor/meteor`](https://github.com/meteor/meteor) as a submodule, then patches only 7 lines in `httpcall_server.js`. There's another one-line patch in `httpcall_tests.js` due to repackaging the files. That's it.
 
 Hopefully the Meteor team will fold this patch into the core, even as an undocumented option.

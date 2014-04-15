@@ -22,5 +22,5 @@ Package.on_test(function (api) {
   api.add_files('meteor/packages/http/test_responder.js', 'server');
   api.add_files('httpcall_tests.js', ['client', 'server']);  // patched
   api.add_files('meteor/packages/http/test_static.serveme', 'client');
-  api.add_files('https_tests.js', 'server');
+  api.add_files('http-more_tests.js', 'server');
 });

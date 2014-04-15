@@ -77,11 +77,11 @@ var _call = function(method, url, options, callback) {
     url: new_url,
     method: method,
     encoding: "utf8",
-    jar: false,
     body: content,
     headers: headers
   });
   req_options.followRedirect = options.followRedirects;  // meteor calls it followRedirect*s*
+  delete req_options.followRedirects;
 
 
   request(req_options, function(error, res, body) {
