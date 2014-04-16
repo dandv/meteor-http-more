@@ -15,3 +15,5 @@
 >   req_options.followRedirect = options.followRedirects;  // meteor calls it followRedirect*s*
 >   delete req_options.followRedirects;
 > 
+94a96
+>       response.href = res.request.uri.href;  // the final URL after following the redirects, per https://github.com/mikeal/request/pull/220#issuecomment-40551122

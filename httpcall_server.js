@@ -93,6 +93,7 @@ var _call = function(method, url, options, callback) {
       response.statusCode = res.statusCode;
       response.content = body;
       response.headers = res.headers;
+      response.href = res.request.uri.href;  // the final URL after following the redirects, per https://github.com/mikeal/request/pull/220#issuecomment-40551122
 
       populateData(response);
 

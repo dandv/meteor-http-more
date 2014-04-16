@@ -1,11 +1,15 @@
 # Meteor's HTTP package + extra options
 
 This is a minimally patched version of Meteor's [standard HTTP package](http://docs.meteor.com/#http), enhanced to pass through extra options to the backend ([@mikeal's request](https://github.com/mikeal/request) as of Meteor 0.8.0).
+It also passes back from `request` the final URL after following redirects, which will be available in the `href` field of the `result` object.
 
 ## Features
 
+All the extra features are available on the server only, because the underlying `xhr` object doesn't have any of the properties below.
+
 * [proxy support](http://stackoverflow.com/a/22069540/1269037)
 * [cookies](https://groups.google.com/forum/#!topic/meteor-core/HdJK0n-09DA) to avoid getting stuck in redirect loops
+* [get the final URL after redirects](https://groups.google.com/forum/#!topic/meteor-talk/Uu_ouiZB-P8)
 * [pass TLS/SSL options](http://stackoverflow.com/q/20681044/1269037)
 * customize `maxRedirects`
 * ... and all the other [`request` options](https://github.com/mikeal/request#requestoptions-callback)

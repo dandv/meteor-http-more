@@ -16,7 +16,7 @@ if (Meteor.isServer) {
 
   // Extra options are passed to Mikeal's request module.
   // This is only implemented on the server.
-  testAsyncMulti("http-more - prevent UNABLE_TO_VERIFY_LEAF_SIGNATURE error", [
+  testAsyncMulti('http-more - prevent UNABLE_TO_VERIFY_LEAF_SIGNATURE error', [
     function businessinsurance(testActual, expectActual) {
       test = testActual, expect = expectActual;  // boilerplate so we don't have to rewrite do_test every time
       // no special options required
@@ -26,12 +26,34 @@ if (Meteor.isServer) {
     }
   ]);
 
-  testAsyncMulti("http-more - NYTimes requires cookie jar", [
+  testAsyncMulti('http-more - NYTimes requires cookie jar', [
     function nytimes(testActual, expectActual) {
       test = testActual, expect = expectActual;  // boilerplate so we don't have to rewrite do_test every time
       // we need to pass {jar: true} - see https://groups.google.com/forum/#!topic/meteor-core/HdJK0n-09DA
       do_test('http://rss.nytimes.com/c/34625/f/640316/s/395c8915/sc/1/l/0L0Snytimes0N0C20A140C0A40C150Cbusiness0C20Eexecutives0Eare0Eout0Eat0Egm0Eafter0Erecall0Bhtml0Dpartner0Frss0Gemc0Frss/story01.htm',
         {jar: true}, 200, /<title>.*Executives/i
+      );
+    }
+  ]);
+
+  testAsyncMulti('http-more - return the final URI after following redirects', [
+    function finalUri(test, expect) {
+      HTTP.call('HEAD', 'http://google.com', {followRedirects: true},  // it's true by default, though that hasn't been documented yet - https://github.com/meteor/meteor/pull/2062
+        expect(function(error, result) {
+          if (error)
+            test.fail(error);
+          else {
+            test.equal(result.statusCode, 200, 'Status code 200');
+            test.equal(result.href, 'http://www.google.com/', 'Final URL www.google.com');
+          }
+        })
+      );
+
+      HTTP.call('HEAD', 'http://google.com', {followRedirects: false},
+        expect(function(error, result) {
+          test.equal(result.statusCode, 301, 'Status code 301 Redirect');
+          test.equal(result.href, 'http://google.com/', 'Since we have not followed redirects, final URL same as initial');
+        })
       );
     }
   ]);
