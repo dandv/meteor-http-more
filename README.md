@@ -1,7 +1,9 @@
-# Meteor's HTTP package + extra options
+# Meteor's HTTP package + extra options: proxy, cookies and more
 
-This is a minimally patched version of Meteor's [standard HTTP package](http://docs.meteor.com/#http), enhanced to pass through extra options to the backend ([@mikeal's request](https://github.com/mikeal/request) as of Meteor 0.8.0).
+`http-more` is a drop-in replacement for Meteor's [standard HTTP package](http://docs.meteor.com/#http), backward-compatible with it, and enhanced to pass through extra options to the backend ([@mikeal's request](https://github.com/mikeal/request) as of Meteor 0.8.0).
 It also passes back from `request` the final URL after following redirects, which will be available in the `href` field of the `result` object.
+
+These modifications are very minimal - just 8 lines of code. Unfortuantely, the Meteor team [refused](https://github.com/meteor/meteor/issues/1703) to accept a pull request for this type of enhancement, hence the need for a separate package.
 
 ## Features
 
