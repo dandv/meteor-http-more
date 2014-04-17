@@ -29,7 +29,7 @@ This is where `http-more` comes in. It lets you pass through to the underlying H
 Currently, the backend is mikeal's `request` module, so you can pass, for example, `{rejectUnauthorized: false}` to avoid that `LEAF_SIGNATURE` error, or {jar: true} to enable a session cookie jar.
 
 
-## Installing
+## Installation
 
 1. `npm install -g meteorite` (if not already installed)
 2. `meteor remove http`
@@ -53,3 +53,29 @@ More tests, against other `request` options, are very welcome.
 The repo includes [`meteor/meteor`](https://github.com/meteor/meteor) as a submodule, then patches only 7 lines in `httpcall_server.js`. There's another one-line patch in `httpcall_tests.js` due to repackaging the files. That's it.
 
 Hopefully the Meteor team will fold this patch into the core, even as an undocumented option.
+
+
+## Author, license and copyright
+
+Author: Dan Dascalescu ([@dandv](http://github.com/dandv))
+
+Copyright (c) 2014 StockBase, LLC.
+
+The MIT License (MIT)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
