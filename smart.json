@@ -3,7 +3,7 @@
   "description": "Meteor's HTTP package enhanced to pass through extra options to the backend: proxy, cookies, SSL support",
   "homepage": "https://github.com/StockBase/meteor-http-more",
   "author": "Dan Dascalescu <dNOSPAMdascalescu@gmail.com> (http://dandascalescu.com)",
-  "version": "0.8.0-4",
+  "version": "0.8.1.1-1",
   "git": "https://github.com/StockBase/meteor-http-more.git",
   "packages": {
   }

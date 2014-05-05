@@ -1,3 +1,3 @@
 [submodule "meteor"]
 	path = meteor
-	url = git@github.com:meteor/meteor.git
+	url = https://github.com/meteor/meteor.git
