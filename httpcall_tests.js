@@ -89,12 +89,16 @@ testAsyncMulti("httpcall - errors", [
       test.isFalse(result);
       test.isFalse(error.response);
     };
-    HTTP.call("GET", "http://asfd.asfd/", expect(unknownServerCallback));
+
+    // 0.0.0.0 is an illegal IP address, and thus should always give an error.
+    // If your ISP is intercepting DNS misses and serving ads, an obviously
+    // invalid URL (http://asdf.asdf) might produce an HTTP response.
+    HTTP.call("GET", "http://0.0.0.0/", expect(unknownServerCallback));
 
     if (Meteor.isServer) {
       // test sync version
       try {
-        var unknownServerResult = HTTP.call("GET", "http://asfd.asfd/");
+        var unknownServerResult = HTTP.call("GET", "http://0.0.0.0/");
         unknownServerCallback(undefined, unknownServerResult);
       } catch (e) {
         unknownServerCallback(e, e.response);
@@ -447,7 +451,7 @@ if (Meteor.isServer) {
       };
 
       // existing static file
-      do_test("/packages/http-more/meteor/packages/http/test_static.serveme", 200, /static file serving/);
+      do_test("/packages/local-test_dandv_http-more/meteor/packages/http/test_static.serveme", 200, /static file serving/);
 
       // no such file, so return the default app HTML.
       var getsAppHtml = [

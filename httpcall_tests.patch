@@ -1,4 +1,4 @@
-450c450
-<       do_test("/packages/http/test_static.serveme", 200, /static file serving/);
+454c454
+<       do_test("/packages/local-test_http/test_static.serveme", 200, /static file serving/);
 ---
->       do_test("/packages/http-more/meteor/packages/http/test_static.serveme", 200, /static file serving/);
+>       do_test("/packages/local-test_dandv_http-more/meteor/packages/http/test_static.serveme", 200, /static file serving/);

@@ -31,9 +31,8 @@ Currently, the backend is mikeal's `request` module, so you can pass, for exampl
 
 ## Installation
 
-1. `npm install -g meteorite` (if not already installed)
-2. `meteor remove http`
-3. `mrt add http-more`
+1. `meteor remove http`
+2. `meteor add dandv:http-more`
 
 
 ## Contributing and tests
@@ -55,11 +54,11 @@ The repo includes [`meteor/meteor`](https://github.com/meteor/meteor) as a submo
 Hopefully the Meteor team will fold this patch into the core, even as an undocumented option.
 
 
-## Author, license and copyright
+## License
 
 Author: Dan Dascalescu ([@dandv](http://github.com/dandv))
 
-Copyright (c) 2014 StockBase, LLC.
+Development initially sponsored by [StockBase](http://stockbase.com), LLC.
 
 The MIT License (MIT)
 

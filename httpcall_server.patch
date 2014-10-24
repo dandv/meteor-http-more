@@ -1,19 +1,19 @@
-75c75,76
+71c71,72
 <   var req_options = {
 ---
 >   delete options.auth;  // auth, if any, was moved into the headers
 >   var req_options = _.extend(options, {
-79,80d79
+75,76d75
 <     jar: false,
 <     timeout: options.timeout,
-82d80
+78d76
 <     followRedirect: options.followRedirects,
-84c82,85
+80c78,81
 <   };
 ---
 >   });
 >   req_options.followRedirect = options.followRedirects;  // meteor calls it followRedirect*s*
 >   delete req_options.followRedirects;
 > 
-94a96
+90a92
 >       response.href = res.request.uri.href;  // the final URL after following the redirects, per https://github.com/mikeal/request/pull/220#issuecomment-40551122
